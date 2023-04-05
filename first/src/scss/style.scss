@@ -1,0 +1,145 @@
+@use 'burgerMenu';
+@use 'colors';
+@use 'variable';
+
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html,
+body {
+	height: 100%;
+}
+
+html {
+	font-size: 62.5%;
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	background-color: colors.$black;
+}
+
+body.is-open .top-bar__nav {
+	transform: translateX(-50%) scale(1);
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+	transition: opacity 0.3s;
+
+	&:hover {
+		opacity: 0.6;
+	}
+}
+
+button {
+	border: none;
+	cursor: pointer;
+}
+
+ul {
+	list-style: none;
+}
+
+img {
+	max-width: 100%;
+}
+
+.header {
+	background-position: center;
+	background-image: url('https://assets.website-files.com/6233f2ac51d2013d6dca2856/6233fb6a451e787d62a8d740_Ornament.svg');
+}
+
+.container {
+	max-width: 1440px;
+	margin: 0 auto;
+	padding: 2em;
+}
+
+.top-bar {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	color: colors.$white;
+
+	&__logo {
+		img {
+			max-width: 150px;
+		}
+	}
+
+	&__nav {
+		position: absolute;
+		top: 150%;
+		left: 50%;
+		transform: translateX(-50%) scale(0);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		font-size: 2rem;
+		background-color: colors.$black;
+		transition: transform 0.3s;
+
+		@media (min-width: 992px) {
+			position: static;
+			width: 100%;
+			top: 0;
+			left: 0;
+			transform: translateX(0);
+			flex-direction: row;
+			justify-content: space-between;
+			background-color: transparent;
+		}
+
+		&-menu {
+			@media (min-width: 992px) {
+				margin: 0 auto;
+			}
+
+			ul {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 3rem;
+
+				@media (min-width: 992px) {
+					flex-direction: row;
+				}
+			}
+		}
+
+		&-buttons {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 3rem;
+			margin-top: 3rem;
+
+			@media (min-width: 992px) {
+				flex-direction: row;
+				margin-top: 0;
+			}
+
+			.register-btn {
+				color: colors.$black;
+				background-color: colors.$white;
+				padding: 0.5em 1.5em;
+				border-radius: variable.$btn-radius;
+			}
+		}
+	}
+
+	&__hamburger {
+		@media (min-width: 992px) {
+			display: none;
+		}
+	}
+}
